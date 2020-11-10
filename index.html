@@ -8,10 +8,14 @@
   </head>
   <body>
     <script>
-      var converter = new showdown.Converter(),
-      text      = '### hxello, markdown!',
-      html      = converter.makeHtml(text)
-      document.write(html)
+      setInterval(fetch('README.md').then(function(response) {
+	  return response.text()
+	}).then(function(md) {
+	  let converter = new showdown.Converter();
+	  document.body.innerHTML = converter.makeHtml(md);
+	}).catch(function(err) {
+	  console.log('Fetch problem: ' + err.message);
+	}), 1000);
    </script>
   </body>
 </html>
