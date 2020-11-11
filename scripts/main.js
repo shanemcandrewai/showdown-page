@@ -1,5 +1,7 @@
 function fetchMD() {
-  fetch('README.md')
+  let myHeaders = new Headers({'cache-control': 'no-cache'});
+
+  fetch('README.md', {headers: myHeaders})
     .then(response => response.text())
     .then(data => getMD(data));
 }
